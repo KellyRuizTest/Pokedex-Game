@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview_show_contact"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    app:cardCornerRadius="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="1dp"
+    android:layout_margin="1dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/colorFondo"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/image_pokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="136dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:padding="6dp"
+
+            />
+
+        <TextView
+            android:id="@+id/name_pokemon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/convergence"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="4dp"
+
+            android:layout_alignParentBottom="true"
+
+        />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

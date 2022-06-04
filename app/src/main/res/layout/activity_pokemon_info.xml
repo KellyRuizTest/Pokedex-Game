@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PokemonInfoActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="6dp"
+        android:translationZ="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf=" @id/header"
+        app:srcCompat="@drawable/ic_arrow" />
+
+    <TextView
+        android:id="@+id/name_pokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/convergence"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:translationZ="100dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/colorFondito1"
+        android:elevation="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_pokemon"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="center"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/name_pokemon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="14dp"
+        android:id="@+id/types"
+        >
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:singleLine="true"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        tools:ignore="NotSibling">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/type1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="type1"
+            android:padding="4dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            app:chipBackgroundColor="@color/colorFondo"
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/type2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            app:chipStrokeColor="@color/colorFondito1"
+            app:chipStrokeWidth="0.3dp"
+            android:hint="type2"
+            android:padding="4dp"
+            app:chipBackgroundColor="@color/colorFondo"
+            android:textAlignment="center"
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            />
+
+    </com.google.android.material.chip.ChipGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weight"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/types"
+        app:layout_constraintEnd_toEndOf="@id/height"
+        app:layout_constraintStart_toStartOf="parent"
+        android:hint=""
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/height"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/types"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/weight"
+        android:hint=""
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_weight"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/weight"
+        app:layout_constraintEnd_toEndOf="@id/label_height"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Weight"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_height"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/label_weight"
+        android:text="Height"
+        />
+
+    <TextView
+        android:id="@+id/base_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/convergence"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="Base Stats"
+        android:translationZ="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_weight"
+        />
+
+    <TextView
+        android:id="@+id/hp_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:text="HP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats" />
+
+    <TextView
+        android:id="@+id/def_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:text="DEF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hp_stat" />
+
+    <TextView
+        android:id="@+id/ataq_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:text="ATK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/def_stat" />
+
+    <TextView
+        android:id="@+id/spd_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:text="SPD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ataq_stat" />
+
+    <TextView
+        android:id="@+id/exp_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:text="EXP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spd_stat" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/hp_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintHorizontal_bias="0.17"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:max="100"
+        android:indeterminate="false"
+        app:trackThickness="12dp"
+        app:indicatorColor="@color/colorPrimary"
+        app:showDelay="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hp_stat"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats"
+        app:trackCornerRadius="10dp"
+        tools:ignore="MissingClass,MissingConstraints" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/def_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintHorizontal_bias="0.17"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="30dp"
+        android:indeterminate="false"
+        app:trackThickness="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/def_stat"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats"
+        app:trackCornerRadius="10dp"
+        tools:ignore="MissingClass,MissingConstraints" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/atq_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintHorizontal_bias="0.17"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="30dp"
+        android:indeterminate="false"
+        app:trackThickness="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ataq_stat"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats"
+        app:trackCornerRadius="10dp"
+        tools:ignore="MissingClass,MissingConstraints" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/spd_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintHorizontal_bias="0.17"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="30dp"
+        android:indeterminate="false"
+        app:trackThickness="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spd_stat"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats"
+        app:trackCornerRadius="10dp"
+        tools:ignore="MissingClass,MissingConstraints" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/exp_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintHorizontal_bias="0.17"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="30dp"
+        android:indeterminate="false"
+        app:trackThickness="12dp"
+        android:max="300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/exp_stat"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats"
+        app:trackCornerRadius="10dp"
+        tools:ignore="MissingClass,MissingConstraints" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/catch_poke"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exp_progress"
+        app:layout_constraintVertical_bias="0.32"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/pokeball" />
+
+    <TextView
+        android:id="@+id/possible_catch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catch it!"
+        app:layout_constraintTop_toBottomOf="@+id/catch_poke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
