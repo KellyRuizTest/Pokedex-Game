@@ -7,12 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,15 +36,20 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar;
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBarMenuItem;
+
 public class Home extends AppCompatActivity {
 
+    private static final String TAG = "HOME";
     private ImageView logouff;
     private FirebaseUser firebaseUser;
-    private Chip show_money;
+    private TextView show_money;
     private TextView bio;
     private ImageView profileImage;
     private TextView pokemonQty;
     private TextView iconQty;
+    private TextView usernameProfile;
     private List<PokemonInfoFirebase> listOwnPokemons;
 
     private PokemonOwnListAdapter adapter;
@@ -52,6 +62,7 @@ public class Home extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
+
 
         logouff = findViewById(R.id.logout_btn);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -68,6 +79,7 @@ public class Home extends AppCompatActivity {
         profileImage = findViewById(R.id.profile_image);
         pokemonQty = findViewById(R.id.pokemon_qty);
         iconQty = findViewById(R.id.icon_user);
+        usernameProfile = findViewById(R.id.id_profile_frag);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -82,11 +94,6 @@ public class Home extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.pokeicon:
-                        startActivity(new Intent(getApplicationContext(), PokeIcon.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
                     case R.id.pokerank:
                         startActivity(new Intent(getApplicationContext(), Ranking.class));
                         overridePendingTransition(0,0);
@@ -96,7 +103,6 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
-
 
         logouff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,21 +128,9 @@ public class Home extends AppCompatActivity {
         userRetrieveQty();
         userRetrievePokemonInfo();
 
-        show_money.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addMoneyToAccount();
-            }
-        });
 
     }
 
-    private void addMoneyToAccount() {
-
-        Intent intent = new Intent(getApplicationContext(), AddMoneyActivity.class);
-        startActivity(intent);
-
-    }
 
     private void userRetrievePokemonInfo() {
 
@@ -149,19 +143,12 @@ public class Home extends AppCompatActivity {
                     for (DataSnapshot each : dataSnapshot.getChildren()){
 
                         PokemonInfoFirebase aux = each.getValue(PokemonInfoFirebase.class);
-                        System.out.println(aux.getName());
-                        System.out.println(aux.getExp());
-                        System.out.println(aux.getUrl_image());
-                        System.out.println(aux.getUrl_info());
-                        System.out.println(aux.getDef());
-                        //if (aux.getUsername().equals(firebaseUser.getUid().toString())){
-
+                        if (aux.getId_user().toString().equals(firebaseUser.getUid().toString())){
                             listOwnPokemons.add(aux);
-                       // }
-
-                        adapter.notifyDataSetChanged();
+                        }
 
                     }
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -183,10 +170,11 @@ public class Home extends AppCompatActivity {
                     Users aux = dataSnapshot.getValue(Users.class);
 
                     String money;
-                    money = String.valueOf(aux.getMoney());
-                    show_money.setText("$"+money);
-                    Picasso.get().load(aux.getImage()).fit().into(profileImage);
+                    money = String.valueOf(aux.getName());
+                    show_money.setText(money);
+                    Picasso.get().load(aux.getImage()).fit().centerCrop().into(profileImage);
                     iconQty.setText(""+aux.getCoin()+"");
+                    usernameProfile.setText(aux.getUsername());
                 }
             }
 
@@ -215,6 +203,5 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-
 
 }

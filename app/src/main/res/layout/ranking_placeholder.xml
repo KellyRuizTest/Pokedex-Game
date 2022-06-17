@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview_show_contact"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="9dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="1dp"
+        android:padding="8dp"
+        app:strokeColor="@color/colorFondito1"
+        app:cardUseCompatPadding="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_margin="4dp"
+            android:id="@+id/show_layout">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/show_user_image"
+                android:layout_width="64dp"
+                android:layout_height="68dp"
+                android:layout_alignParentStart="true"
+                android:background="@color/background"
+                app:civ_border_color="#90a4ae"
+                app:civ_border_width="0.7dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/show_user_name"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="22dp"
+                android:background="@color/background"
+                android:layout_toEndOf="@+id/show_user_image"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
+                android:fontFamily="@font/convergence"
+                app:layout_constraintLeft_toRightOf="@+id/show_user_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/show_user_ranking"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/convergence"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginRight="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                 />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/icon_poke_qty"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:civ_border_color="#90a4ae"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="1dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@+id/show_user_name"
+                app:layout_constraintStart_toStartOf="@+id/show_user_name"
+
+                />
+
+            <TextView
+                android:id="@+id/text_poke_qty"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/convergence"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@id/icon_poke_qty"
+                app:layout_constraintTop_toBottomOf="@id/show_user_name"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

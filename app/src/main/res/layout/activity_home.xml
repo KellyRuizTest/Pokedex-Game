@@ -16,6 +16,7 @@
         app:itemTextColor="@color/colorBlanco"
         app:menu="@menu/menu_bar"
         app:itemIconTint="@color/colorBlanco"
+        app:elevation="4dp"
         android:layout_alignParentBottom="true" />
 
     <com.google.android.material.appbar.AppBarLayout
@@ -91,16 +92,16 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
                     android:src="@drawable/usermale"
-                    app:civ_border_color="@android:color/holo_blue_dark"
-                    app:civ_border_width="1dp" />
+                    app:civ_border_color="#90a4ae"
+                    app:civ_border_width="0.7dp" />
 
             </LinearLayout>
 
-            <com.google.android.material.chip.Chip
+            <TextView
                 android:id="@+id/money_available"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Money"
+                android:hint="Name"
                 android:padding="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
@@ -111,7 +112,6 @@
                 app:chipIcon="@drawable/ic_plus"
                 app:chipIconTint="@color/colorFondito1"
                 app:chipBackgroundColor="@color/colorFondo"
-                style="@style/Widget.MaterialComponents.Chip.Action"
                 />
 
 
@@ -159,10 +159,11 @@
                         app:layout_constraintStart_toEndOf="@+id/pokemon_qty_text"
                         android:layout_marginStart="6dp"
                         android:layout_marginLeft="4dp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16dp"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/convergence"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -184,14 +185,15 @@
                         android:id="@+id/icon_user"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:fontFamily="sans-serif-condensed"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginEnd="10dp"
-                        android:textColor="#2b9348"
-                        android:textSize="16dp"
+                        android:fontFamily="@font/convergence"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

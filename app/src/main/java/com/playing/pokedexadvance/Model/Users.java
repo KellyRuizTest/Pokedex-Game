@@ -1,5 +1,7 @@
 package com.playing.pokedexadvance.Model;
 
+import java.util.Comparator;
+
 public class Users {
 
     private String id;
@@ -10,15 +12,37 @@ public class Users {
     private String image;
     private int coin;
     private float money;
+    private String username;
+    private int qty_pokemon;
 
-    Users() {
+    public Users() {
 
+        id = "Noid";
+        name = "NoName";
         email = "No Email setted";
         password = "NoPW";
-        name = "NoName";
-        image = "#noURLimage";
         bio = "No Bio";
+        image = "#noURLimage";
         coin = 0;
+        username = "noUSERNAME";
+        qty_pokemon = 0;
+
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getQty_pokemon() {
+        return qty_pokemon;
+    }
+
+    public void setQty_pokemon(int qty_pokemon) {
+        this.qty_pokemon = qty_pokemon;
     }
 
     public Users(String id, String name, String email, String password, String bio, String image, int icon) {
@@ -94,4 +118,34 @@ public class Users {
     public void setCoin(int coin) {
         this.coin = coin;
     }
+
+    public float gettingRankingNro(){
+
+        return 1* this.money + (float) 1.3* this.coin + (float) 1.7* this.qty_pokemon;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", bio='" + bio + '\'' +
+                ", image='" + image + '\'' +
+                ", coin=" + coin +
+                ", money=" + money +
+                ", username='" + username + '\'' +
+                ", qty_pokemon=" + qty_pokemon +
+                '}';
+    }
+
+    public static Comparator<Users> comparatorByRanking = new Comparator<Users>() {
+        @Override
+        public int compare(Users s1, Users s2) {
+
+            int aux = (int) s2.gettingRankingNro() - (int) s1.gettingRankingNro();
+            return aux;
+        }
+    };
 }

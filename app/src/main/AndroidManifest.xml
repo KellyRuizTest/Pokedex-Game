@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,14 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AddMoneyActivity"
-            android:exported="false" />
-        <activity
             android:name=".PokemonInfoActivity"
             android:exported="false"
             android:theme="@style/AppThemeDos" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".PokeIcon" />
         <activity android:name=".PokemonActivity" />
         <activity android:name=".Ranking" />
         <activity android:name=".Home" />

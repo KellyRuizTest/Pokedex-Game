@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pokedex Advance</string>
+    <string name="homes">Home</string>
+    <string name="markets">Marketplace</string>
+    <string name="ranks">Ranking</string>
 </resources>

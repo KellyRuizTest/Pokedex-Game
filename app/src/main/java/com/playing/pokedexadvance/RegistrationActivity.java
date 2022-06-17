@@ -29,6 +29,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button registerButton;
     private EditText editName;
+    private EditText editUsername;
     private EditText editEmail;
     private EditText editPassw;
     private ProgressDialog loadingBar;
@@ -45,6 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
         editName = findViewById(R.id.edit_name);
         editEmail = findViewById(R.id.edit_email);
         editPassw = findViewById(R.id.edit_pass);
+        editUsername = findViewById(R.id.edit_username);
 
         loadingBar = new ProgressDialog(this);
 
@@ -66,13 +68,25 @@ public class RegistrationActivity extends AppCompatActivity {
         final String name = editName.getText().toString();
         final String email = editEmail.getText().toString();
         final String password =editPassw.getText().toString();
+        final String username = editUsername.getText().toString();
 
         if (TextUtils.isEmpty(name)){
             Toast.makeText(getApplicationContext(), "Name is empty", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        if (TextUtils.isEmpty(username)){
+            Toast.makeText(getApplicationContext(), "Username is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (name.length() > 20 ){
             Toast.makeText(getApplicationContext(), "name is too large", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (username.length() > 10 ) {
+            Toast.makeText(getApplicationContext(), "username is too large", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -118,9 +132,11 @@ public class RegistrationActivity extends AppCompatActivity {
                     userdataMap.put("name", name);
                     userdataMap.put("email", email);
                     userdataMap.put("password", password);
+                    userdataMap.put("username", username);
                     userdataMap.put("bio", "");
                     userdataMap.put("image", image);
                     userdataMap.put("coin", iconSet);
+                    userdataMap.put("qty_pokemon", 0);
 
                     //final Users aux = new Users(id, name, email, password, "", image, icon);
 

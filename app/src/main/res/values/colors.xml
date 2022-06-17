@@ -3,8 +3,9 @@
     <color name="colorPrimary">#ef233c</color>
     <color name="colorPrimaryDark">#d90429</color>
     <color name="colorAccent">#374266</color>
-    <color name="colorFondo">#cbf3f0</color>/
+    <color name="colorFondo">#cbf3f0</color>
     <color name="colorFondito1">#ee8b98</color>
     <color name="colorBlanco">#edf2f4</color>
+    <color name="background">#dddddd</color>
 
 </resources>

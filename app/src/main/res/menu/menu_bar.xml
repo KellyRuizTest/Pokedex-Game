@@ -4,16 +4,14 @@
     <item
         android:id="@+id/home"
         android:title="Poke Home"
-        android:icon="@drawable/ic_home" />
+        android:icon="@drawable/home"
+        android:iconTint="@android:color/white"
+        />
 
     <item
         android:id="@+id/marketplace"
         android:title="Poke Market"
         android:icon="@drawable/ic_market" />
-
-    <item android:id="@+id/pokeicon"
-        android:title="Poke Icon"
-        android:icon="@drawable/ic_payment" />
 
     <item android:id="@+id/pokerank"
         android:title="Poke Ranking"

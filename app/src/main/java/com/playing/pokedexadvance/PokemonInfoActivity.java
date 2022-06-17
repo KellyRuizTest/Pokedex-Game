@@ -1,10 +1,29 @@
 package com.playing.pokedexadvance;
 
+import static com.playing.pokedexadvance.R.drawable.agua;
+import static com.playing.pokedexadvance.R.drawable.bug;
+import static com.playing.pokedexadvance.R.drawable.electric;
+import static com.playing.pokedexadvance.R.drawable.fight;
+import static com.playing.pokedexadvance.R.drawable.fire;
+import static com.playing.pokedexadvance.R.drawable.flying;
+import static com.playing.pokedexadvance.R.drawable.fuego;
+import static com.playing.pokedexadvance.R.drawable.normal;
+import static com.playing.pokedexadvance.R.drawable.plant_1;
+import static com.playing.pokedexadvance.R.drawable.poison;
+import static com.playing.pokedexadvance.R.drawable.rock;
+import static com.playing.pokedexadvance.R.drawable.water;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,14 +33,20 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.playing.pokedexadvance.Model.PokemonInfo;
 import com.playing.pokedexadvance.Model.PokemonInfoFirebase;
 import com.playing.pokedexadvance.Model.PokemonResponse;
+import com.playing.pokedexadvance.Model.Users;
 import com.playing.pokedexadvance.Retrofit.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +62,8 @@ public class PokemonInfoActivity extends AppCompatActivity {
 
     TextView PokemonWeight;
     TextView PokemonHeight;
+    TextView pokemonCatched;
+    Button buttonCatched;
     Chip ChipType1;
     Chip ChipType2;
     ProgressBar PokemonHPprogress;
@@ -56,8 +83,11 @@ public class PokemonInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_info);
 
+
         TextView PokemonName = findViewById(R.id.name_pokemon);
         ImageView PokemonImage = findViewById(R.id.image_pokemon);
+
+        ImageView arrow = findViewById(R.id.arrow);
         PokemonWeight = findViewById(R.id.weight);
         PokemonHeight = findViewById(R.id.height);
         ChipType1 = findViewById(R.id.type1);
@@ -68,6 +98,9 @@ public class PokemonInfoActivity extends AppCompatActivity {
         PokemonDEFprogress = findViewById(R.id.def_progress);
         PokemonEXPprogress = findViewById(R.id.exp_progress);
         lottieAnimationView = findViewById(R.id.catch_poke);
+        buttonCatched = findViewById(R.id.button_catch);
+        pokemonCatched =findViewById(R.id.possible_catch);
+
         productsRef = FirebaseDatabase.getInstance("https://pokedex-app-71958-default-rtdb.firebaseio.com/").getReference().child("Pokemon");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -91,30 +124,40 @@ public class PokemonInfoActivity extends AppCompatActivity {
 
         PokemonName.setText(name);
         Picasso.get().load(url_image).into(PokemonImage);
-
         fetchdataInfo(url_info);
+
+        isCathed(pokemonFirebase.getName().toString());
 
         lottieAnimationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lottieAnimationView.playAnimation();
+
                 catchPokemonForUser();
             }
         });
+
+        arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
     }
 
     private void catchPokemonForUser() {
 
+        lottieAnimationView.playAnimation();
         String username = firebaseUser.getUid().toString();
         pokemonFirebase.setId_user(username);
         final String pid = FirebaseDatabase.getInstance("https://pokedex-app-71958-default-rtdb.firebaseio.com/").getReference().child("Pokemon").push().getKey();
 
         String type2;
 
-        if (!pokemonFirebase.getType2().equals("") || pokemonFirebase.getType2() != null){
+        if (!pokemonFirebase.getType2().equals("") || pokemonFirebase.getType2() != null) {
             type2 = pokemonFirebase.getType2();
-        }else{
+        } else {
             type2 = "";
         }
 
@@ -137,18 +180,74 @@ public class PokemonInfoActivity extends AppCompatActivity {
         pokemonMap.put("exp", pokemonFirebase.getExp());
         pokemonMap.put("selling", false);
         pokemonMap.put("cost", 3000);
-        System.out.println(pokemonMap);
 
         productsRef.child(pid).updateChildren(pokemonMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Catched", Toast.LENGTH_LONG).show();
+                if (task.isSuccessful()) {
+                    Snackbar snackbar = Snackbar.make(pokemonCatched, "Pokemon has been catched", Snackbar.LENGTH_LONG);
+                    snackbar.setTextColor(getResources().getColor(R.color.colorFondo));
+                    snackbar.setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE);
+                    snackbar.show();
+
                     FirebaseDatabase.getInstance(FINSTANCE).getReference().child("Users").child(firebaseUser.getUid().toString()).child("Catched").child(pid).setValue(true);
 
-                }else{
+                    addCatchedQty();
+
+
+                } else {
                     Toast.makeText(getApplicationContext(), "Error in catching", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+    }
+
+    private void addCatchedQty() {
+
+        DatabaseReference userFIre = FirebaseDatabase.getInstance(FINSTANCE).getReference().child("Users").child(firebaseUser.getUid().toString());
+
+        userFIre.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    Users auxiliar = dataSnapshot.getValue(Users.class);
+
+                    int qty_pokemon = auxiliar.getQty_pokemon() + 1;
+                    FirebaseDatabase.getInstance(FINSTANCE).getReference().child("Users").child(firebaseUser.getUid().toString()).child("qty_pokemon").setValue(qty_pokemon);
+                    lottieAnimationView.cancelAnimation();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void isCathed(final String pid) {
+
+        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance("https://pokedex-app-71958-default-rtdb.firebaseio.com/").getReference().child("Pokemon");
+        firebaseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot each : dataSnapshot.getChildren()){
+                        PokemonInfoFirebase aux = each.getValue(PokemonInfoFirebase.class);
+                        if(aux.getName().equals(pid)){
+                            pokemonCatched.setVisibility(View.GONE);
+                            lottieAnimationView.setVisibility(View.GONE);
+                            buttonCatched.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -203,15 +302,28 @@ public class PokemonInfoActivity extends AppCompatActivity {
                     }
 
                     if (data.getTypes().size() > 1){
+
+                        String type1 = data.getTypes().get(0).getType().getName().toString();
+                        String type2 = data.getTypes().get(1).getType().getName().toString();
+
                         ChipType1.setText(data.getTypes().get(0).getType().getName());
                         ChipType2.setText(data.getTypes().get(1).getType().getName());
+                        setIcon(type1, ChipType1);
+                        setIcon(type2, ChipType2);
+
                         pokemonFirebase.setType1(data.getTypes().get(0).getType().getName().toString());
                         pokemonFirebase.setType2(data.getTypes().get(1).getType().getName().toString());
 
                     } else {
+
+                        String type1 = data.getTypes().get(0).getType().getName().toString();
+
                         ChipType1.setText(data.getTypes().get(0).getType().getName());
+                        setIcon(type1, ChipType1);
+
                         ChipType2.setChipIconVisible(false);
                         ChipType2.setVisibility(View.GONE);
+
                         pokemonFirebase.setType1(data.getTypes().get(0).getType().getName().toString());
                         pokemonFirebase.setType2("");
                     }
@@ -226,4 +338,66 @@ public class PokemonInfoActivity extends AppCompatActivity {
         });
 
     }
+
+    private void setIcon(String type, Chip chipType){
+
+        if (type.equals("water")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(water);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("fire")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(fire);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("electric")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(electric);
+            chipType.setChipIcon(img);
+        }
+        if (type.equals("poison")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(poison);
+            chipType.setChipIcon(img);
+        }
+        if (type.equals("fighting")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(fight);
+            chipType.setChipIcon(img);
+        }
+        if (type.equals("rock")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(rock);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("normal")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(normal);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("grass")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(plant_1);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("flying")){
+
+            Drawable img = getApplicationContext().getResources().getDrawable(flying);
+            chipType.setChipIcon(img);
+        }
+
+        if (type.equals("bug")){
+            Drawable img = getApplicationContext().getResources().getDrawable(bug);
+            chipType.setChipIcon(img);
+        }
+
+
+    }
+
 }

@@ -100,26 +100,15 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.pokeicon:
+                   /* case R.id.pokeicon:
                         startActivity(new Intent(getApplicationContext(), PokeIcon.class));
                         overridePendingTransition(0,0);
-                        return true;
+                        return true;*/
                 }
 
                 return false;
             }
         });
-
-
-        /*pokecarga.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intenttoCharger = new Intent(getApplicationContext(), PokemonActivity.class);
-                startActivity(intenttoCharger);
-
-            }
-        });*/
 
     }
 

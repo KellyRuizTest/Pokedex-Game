@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "316870788937",
+    "firebase_url": "https://pokedex-app-71958-default-rtdb.firebaseio.com",
+    "project_id": "pokedex-app-71958",
+    "storage_bucket": "pokedex-app-71958.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316870788937:android:fd412b3c03723373d63c98",
+        "android_client_info": {
+          "package_name": "com.playing.pokedexadvance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316870788937-9dtliu154iiqilusd8ciq67l47447nj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.playing.pokedexadvance",
+            "certificate_hash": "b0c2bc8d95e286cfa4cbc04eab09bd136c3f9a32"
+          }
+        },
+        {
+          "client_id": "316870788937-v6iloula2klvh2g97lkcsgc8ir3l49j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClMq0Fo2u-sYZosnGcmCsRZJnM0lTibeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316870788937-v6iloula2klvh2g97lkcsgc8ir3l49j8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

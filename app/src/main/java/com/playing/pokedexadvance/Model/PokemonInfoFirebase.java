@@ -42,8 +42,6 @@ public class PokemonInfoFirebase {
         this.height = null;
         this.type1 = null;
         this.type2 = null;
-        this.url_image = null;
-        this.url_info = null;
         this.hp = null;
         this.def = null;
         this.speed = null;
