@@ -5,7 +5,7 @@
 ## 📸 Screenshot
 
 
-## Funcionality
+## 🗡️ Funcionality
 
 
 ## 🗡️ App Features
