@@ -3,7 +3,7 @@
 **Pokedex Game** is an app which we can play catch Pokemon with your friends. Gain some experience knowledge and be the Pokemon master.
 
 ## 📸 Screenshot
-
+![](media/baner.png)
 
 ## 🗡️ Funcionality
 
