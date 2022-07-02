@@ -1,12 +1,11 @@
 # **Pokedex Game**
 
+```
 **Pokedex Game** is an app which we can play catch Pokemon with your friends. Gain some experience knowledge and be the Pokemon master.
+```
 
 ## 📸 Screenshot
 ![](media/baner.png)
-
-## 🗡️ Funcionality
-
 
 ## 🗡️ App Features
 
@@ -19,10 +18,12 @@
 
 ## 🛠 Technical details 
 
+```
 - Pokedex Game uses Firebase for user authentication, it supports email based authentication.
 - [GSON](https://github.com/google/gson) - A modern JSON library for Kotlin and Java.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - A type-safe HTTP client for Android and Java.
 - [Glide](https://github.com/bumptech/glide), [GlidePalette](https://github.com/florent37/GlidePalette) - Loading images from network.
+```
 
 ## Open API
 
