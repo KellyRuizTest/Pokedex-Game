@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.st235:expandablebottombar:1.1.8@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7a16f6b08a03fc9781e89efe38133b9b/jetified-expandablebottombar-1.1.8/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7a16f6b08a03fc9781e89efe38133b9b/jetified-expandablebottombar-1.1.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7a16f6b08a03fc9781e89efe38133b9b/jetified-expandablebottombar-1.1.8/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.st235/expandablebottombar/1.1.8/5653c69bad3658f5b5334c45bea9b30a986a6ce/expandablebottombar-1.1.8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.st235/expandablebottombar/1.1.8/95294ab7f245077939a338a25e623a30a57dc829/expandablebottombar-1.1.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

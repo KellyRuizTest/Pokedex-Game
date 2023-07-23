@@ -126,7 +126,7 @@ public class PokemonInfoActivity extends AppCompatActivity {
         Picasso.get().load(url_image).into(PokemonImage);
         fetchdataInfo(url_info);
 
-        isCathed(pokemonFirebase.getName().toString());
+        isCathed(pokemonFirebase.getName());
 
         lottieAnimationView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +142,6 @@ public class PokemonInfoActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
 
     }
 

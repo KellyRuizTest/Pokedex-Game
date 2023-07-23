@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -36,13 +35,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.playing.pokedexadvance.Model.Users;
-import com.playing.pokedexadvance.R;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -229,7 +224,7 @@ public class SettingActivity extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Profile was updated!", Toast.LENGTH_SHORT).show();
                                         updateImage = false;
-                                        Intent inten = new Intent(SettingActivity.this, Home.class);
+                                        Intent inten = new Intent(SettingActivity.this, HomeActivity.class);
                                         inten.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(inten);
 
@@ -300,7 +295,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Profile was updated!", Toast.LENGTH_SHORT).show();
                     updateImage = false;
-                    Intent intent = new Intent(SettingActivity.this, Home.class);
+                    Intent intent = new Intent(SettingActivity.this, HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 

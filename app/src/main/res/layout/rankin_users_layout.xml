@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="2dp"
-                android:minHeight="42dp"
+                android:minHeight="38dp"
                 android:minWidth="60dp"
                 android:fontFamily="@font/convergence"
                 android:textAllCaps="false"
@@ -75,20 +75,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:rippleColor="@color/colorAccent" />
 
-            <TextView
-                android:id="@+id/show_user_ranking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/convergence"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                android:textColor="@android:color/darker_gray"
-                android:layout_marginRight="10dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="user" />
+<!--            <TextView-->
+<!--                android:id="@+id/show_user_ranking"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="4dp"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:fontFamily="@font/convergence"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"-->
+<!--                android:textColor="@android:color/darker_gray"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                tools:text="user" />-->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/icon_poke_qty"
@@ -99,7 +99,7 @@
                 android:layout_marginStart="1dp"
                 app:layout_constraintTop_toBottomOf="@+id/show_user_name"
                 app:layout_constraintStart_toStartOf="@+id/show_user_name"
-                android:background="@drawable/pokebola"
+                android:background="@drawable/pokereduce"
                 />
 
             <TextView
